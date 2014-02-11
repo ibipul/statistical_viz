@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Statistical Visualization by ibipul</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Statistical Visualization</h1>
+        <p>Analysis of Large Multivariate data sets</p>
+
+        <p class="view"><a href="https://github.com/ibipul/statistical_viz">View the Project on GitHub <small>ibipul/statistical_viz</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/ibipul/statistical_viz/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/ibipul/statistical_viz/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/ibipul/statistical_viz">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <p>Team Members:</p>
+
+<ul>
+<li>Bipul Islam</li>
+<li>Ritankar Mandal</li>
+</ul><hr><h2>
+<a name="statistical-visualization-tools" class="anchor" href="#statistical-visualization-tools"><span class="octicon octicon-link"></span></a>Statistical Visualization Tools</h2>
+
+<p>The R scripts here implement statistical visualization of Multivariate data.</p>
+
+<ul>
+<li>Singular Value Decomposition,</li>
+<li>Principle Component Analysis, </li>
+<li>Score plot, Loading plot, Biplot,</li>
+<li>Hotelling plot and Tsquare plots </li>
+</ul><p>have been implemented here. The included scripts need to be parsed with R, then either the following commands could be used to visualize the data with plot commands of R, or, any other plotting devices of user's choice.</p>
+
+<p><em>Note: These codes are written as a part of verification of algorithms which had be written in C++ during an internship *</em>strand Life Sciences** *</p>
+
+<h4>
+<a name="file-svd-manr" class="anchor" href="#file-svd-manr"><span class="octicon octicon-link"></span></a>File: SVD-MAN.R</h4>
+
+<hr><p>Creates the PCA of the multivariate data with <strong>S</strong>ingular <strong>V</strong>alue <strong>D</strong>ecomposition method.</p>
+
+<h4>
+<a name="file-biplotr" class="anchor" href="#file-biplotr"><span class="octicon octicon-link"></span></a>File: BIPLOT.R</h4>
+
+<hr><p>Following command will generate a biplot of the given data</p>
+
+<pre><code>biplot(G,H,expand=1,main="Bi-Plot",xlab="PC1",ylab="PC2")
+</code></pre>
+
+<p>The Correctness of the method can be validated by the following commands that utilizes PCA routine inbuilt in R:</p>
+
+<pre><code>pc &lt;- prcomp(data)
+biplot(pc,main="Biplot by PRCOMP")
+</code></pre>
+
+<p>The relative orientation of loadings &amp; the scatter of scores will validate the correctness of SVD method.</p>
+
+<h4>
+<a name="file-dmodxr" class="anchor" href="#file-dmodxr"><span class="octicon octicon-link"></span></a>File: DMODX.R</h4>
+
+<hr><p>R Plot of rowsquared matrix &amp; an overlay of abline at the critical point can point out the required moderate outliers. Following commands will do.</p>
+
+<pre><code>plot(rowsquared, col='red',pch=20,main="DmodX Chart showing both 1% &amp; 5% critical limit", xlab= "Row Index", ylab="Dmodx value")
+
+abline(h=sqrt(6.0005931),col="blue")
+abline(h=sqrt(9.22091172),col="black")
+text(1000,2," 5% critical limit")
+text(1000,3.7," 1% critical limit")
+</code></pre>
+
+<h4>
+<a name="file-tsquareplotr" class="anchor" href="#file-tsquareplotr"><span class="octicon octicon-link"></span></a>File: TSQUAREPLOT.R</h4>
+
+<hr><p>Following commands can be used to generate the Confidence ellipse plot,</p>
+
+<pre><code>plot(score,col='red',pch=20,main="Confidence ellipse for 1% and 5%",xlab="PC1 component",ylab="PC2 component")
+
+points(x1,y1,col='black',type='l')
+points(x2,y2,col='blue',type='l')
+text(4,2.5,"1% limit")
+text(-2.5,0,"5% limit")
+</code></pre>
+
+<p>Following commands can be used to generate the TSquare plot</p>
+
+<pre><code>plot(TSQ,col='red',pch=20,main="T square plot with confidence intervals 1% &amp; 5%",xlab= "Dimension Index",ylab="T square value")
+
+abline(h=five,col='blue')
+abline(h=one,col='black')
+text(1000,1,"5% confidence limit")
+text(1000,20,"1% confidence limit")
+</code></pre>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/ibipul">ibipul</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
